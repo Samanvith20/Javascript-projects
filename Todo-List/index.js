@@ -1,6 +1,6 @@
 const inputbox = document.querySelector("#Inputbox");
 const listcontainer = document.querySelector("#list-container");
-
+// Add todo
 function addTask() {
     if (inputbox.value === "") {
         alert("Please Enter Your Task");
@@ -13,12 +13,12 @@ function addTask() {
         let span = document.createElement("span");
         span.innerHTML = '<i class="fas fa-trash-alt"></i>';
         span.className = "trash-icon";
+        // delete todo
         span.onclick = function() {
             removeTask(li);
         };
-
         li.appendChild(span);
-        saveData();
+       saveData();
     }
     inputbox.value = "";
 }
@@ -35,6 +35,7 @@ function saveData() {
 function showData() {
     listcontainer.innerHTML = localStorage.getItem("data");
 }
+showData()
 
 
-showData();
+
