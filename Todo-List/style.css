@@ -56,19 +56,25 @@ button:hover {
     padding: 0;
 }
 
+
+
 li {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ddd;
     padding: 10px;
+    position: relative; /* Add relative positioning for pseudo-element */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
 }
 
-li:last-child {
-    border-bottom: none;
-}
 
-.fa-trash-alt {
-    color: #f44336;
+.trash-icon {
+    color: #888;
     cursor: pointer;
+    margin-right: 5px; 
 }
+.trash-icon:hover {
+    color: #f44336; 
+}
+
