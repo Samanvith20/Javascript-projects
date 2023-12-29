@@ -10,17 +10,104 @@
     <div id="container">
         <h1>Quiz-App</h1>
         <div id="questions">
-            <h2 id="Question">Question comes here</h2>
+            <h2 id="question">Question comes here</h2>
             <div class="buttons">
-                <button id="button">option1</button>
-                <button  id="button">option2</button>
-                <button id="button">option3</button>
-                <button id="button">option4</button>
+                <button class="option-button">Option 1</button>
+                <button class="option-button">Option 2</button>
+                <button class="option-button">Option 3</button>
+                <button class="option-button">Option 4</button>
             </div>
-            <button id="next-button">Next</button>
+            <button id="next-button" onclick="nextQuestion()">Next</button>
         </div>
-
+        <div id="score" style="display: none;">
+            <p>Your Score: <span id="score-value"></span></p>
+        </div>
     </div>
-    <script src="index.js"></script>
+
+    <script>
+        
+        const quizData = [
+            {
+                question: "What is the capital of France?",
+                options: ["Paris", "Berlin", "Madrid", "Rome"],
+                correctAnswer: "Paris"
+            },
+            {
+                question: "What does HTML stand for?",
+                options: ["Hyper Text Markup Language", "Hyper Transfer Markup Language", "Home Tool Markup Language", "Hyperlink and Text Markup Language"],
+                correctAnswer: "Hyper Text Markup Language"
+            },
+            {
+                question: "Which programming language is commonly used for front-end web development?",
+                options: ["Java", "Python", "JavaScript", "Ruby"],
+                correctAnswer: "JavaScript"
+            },
+            {
+                question: "What is the purpose of CSS?",
+                options: ["To create dynamic web pages", "To style and layout web pages", "To handle server-side logic", "To manage databases"],
+                correctAnswer: "To style and layout web pages"
+            },
+            {
+                question: "What is the latest version of the HTML standard?",
+                options: ["HTML4", "HTML5", "XHTML", "XML"],
+                correctAnswer: "HTML5"
+            },
+           
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        // Function to initialize the quiz
+        function initializeQuiz() {
+            showQuestion();
+        }
+
+        // Function to display the current question
+        function showQuestion() {
+            const currentQuestion = quizData[currentQuestionIndex];
+            document.getElementById("question").innerText = currentQuestion.question;
+
+            const optionButtons = document.querySelectorAll(".option-button");
+            optionButtons.forEach((button, index) => {
+                button.innerText = currentQuestion.options[index];
+                button.onclick = () => checkAnswer(currentQuestion.options[index]);
+            });
+        }
+
+      // to check the answer
+        function checkAnswer(selectedAnswer) {
+            const currentQuestion = quizData[currentQuestionIndex];
+            if (selectedAnswer === currentQuestion.correctAnswer) {
+                score++;
+            }else{
+                alert("Incorrect! The correct answer is: " + currentQuestion.correctAnswer);
+            }
+
+           // move to next question
+           nextQuestion();
+        }
+
+       
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                showQuestion();
+            } else {
+                
+                showScore();
+            }
+        }
+
+        // to display score
+        function showScore() {
+            document.getElementById("questions").style.display = "none";
+            document.getElementById("score").style.display = "block";
+            document.getElementById("score-value").innerText = score;
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initializeQuiz;
+    </script>
 </body>
 </html>
