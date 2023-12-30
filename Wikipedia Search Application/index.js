@@ -1,6 +1,6 @@
 let searchInputEl = document.getElementById("searchInput");
 let searchResultsE1 = document.getElementById("searchResults");
-let spinnerEl = document.getElementById("spinner");
+let spinnerEl = document.getElementById("spinner")
 
 function createAndAppendSearchResult(result) {
     let { link, title, description } = result;
